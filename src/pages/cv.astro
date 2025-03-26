@@ -1,0 +1,42 @@
+---
+// src/pages/cv.astro
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pageTitle = 'cv - Linus Wolff';
+const pageDescription = 'My professional experience, education, and skills';
+---
+<MainLayout title={pageTitle} activePage="cv" description={pageDescription}>
+     <section id="cv" class="section">
+        <div class="section-header">
+            <h1>Curriculum Vitae</h1>
+        </div>
+         {/* ADD YOUR ACTUAL CV CONTENT! */}
+        <p>This section contains your professional information and experience.</p>
+        <div class="cv-content">
+            <h2>Experience</h2>
+            <p>Your work experience goes here.</p>
+            <h2>Education</h2>
+            <p>Your educational background goes here.</p>
+            <h2>Skills</h2>
+            <p>Your skills and expertise go here.</p>
+        </div>
+    </section>
+
+    {/* === PAGE-SPECIFIC STYLES === */}
+    <style>
+        .cv-content {
+            margin-top: 2rem;
+        }
+
+        .cv-content h2 {
+            margin-top: 2rem; /* Space above each major section */
+            margin-bottom: 0.5rem; /* Reduced space below heading */
+            padding-bottom: 0.25rem; /* Optional: add underline effect */
+            border-bottom: 1px solid var(--border-color); /* Optional: subtle separator */
+            display: inline-block; /* Make border only span text width */
+        }
+
+         /* Add more specific styles for CV entries if needed */
+         /* e.g., .cv-entry, .cv-date, .cv-description */
+    </style>
+</MainLayout>

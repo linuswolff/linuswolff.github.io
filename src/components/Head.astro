@@ -1,0 +1,56 @@
+---
+// src/components/Head.astro
+interface Props {
+    title: string;
+    description?: string; // Add optional description prop
+}
+
+const { title, description = "Linus Wolff's personal website" } = Astro.props; // Default description
+---
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<link rel="icon" type="image/png" href="/favicon.png" />
+
+{/* Preconnects and Font Loading */}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Tourney:wght@600&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+{/* Stylesheet */}
+<link rel="stylesheet" href="/styles.css">
+
+{/* Inline Theme Script (as before) */}
+<script is:inline>
+    const localStorageKey = 'theme-preference';
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const setTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        try { localStorage.setItem(localStorageKey, theme); } catch (e) {}
+    };
+
+    const getPreferredTheme = () => {
+        try {
+            const storedTheme = localStorage.getItem(localStorageKey);
+            if (storedTheme) return storedTheme;
+        } catch (e) {}
+        return prefersDarkScheme.matches ? 'dark' : 'light';
+    };
+
+    window.toggleTheme = function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+    }
+
+    setTheme(getPreferredTheme());
+     prefersDarkScheme.addEventListener('change', (e) => {
+        try {
+            if (!localStorage.getItem(localStorageKey)) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        } catch (e) {}
+    });
+</script>

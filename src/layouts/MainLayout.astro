@@ -1,0 +1,33 @@
+---
+// src/layouts/MainLayout.astro
+import Head from '../components/Head.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+interface Props {
+    title: string;
+    activePage: 'about' | 'projects' | 'cv'; // To highlight the correct sidebar link
+    description?: string; // allow passing description from page
+}
+
+const { title, activePage, description } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <Head title={title} description={description} /> {/* Include the Head component */}
+</head>
+<body>
+    <main class="visible">
+        <!-- Page-specific content goes here -->
+        <slot />
+    </main>
+
+    <Sidebar activePage={activePage} />
+
+    {/* Script to attach theme toggle listeners */}
+    <script>
+        const sidebarThemeToggle = document.getElementById('sidebar-theme-toggle');
+        if (sidebarThemeToggle) sidebarThemeToggle.addEventListener('click', window.toggleTheme);
+    </script>
+</body>
+</html>

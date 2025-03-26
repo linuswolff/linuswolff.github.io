@@ -1,0 +1,143 @@
+/* public/styles.css */
+
+/* === THEME VARIABLES === */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --card-bg: #ffffff; /* Used by project cards */
+    --box-bg: #ffffff; /* Used by content-box and sidebar */
+    --border-color: #e0e0e0;
+    --hover-color: #f0f0f0;
+    --transition-speed: 0.3s;
+    --image-filter: brightness(1); /* Kept global if needed elsewhere */
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-bg: #2d2d2d;
+    --box-bg: #121212;
+    --border-color: #404040;
+    --hover-color: #404040;
+    --image-filter: brightness(0.8); /* Example: Slightly dim background in dark mode */
+}
+
+/* === RESETS & BASE STYLES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.3;
+    transition: color var(--transition-speed), background-color var(--transition-speed);
+    min-height: 100vh; /* Use min-height instead of height */
+    overflow-x: hidden;
+    font-weight: 300;
+    font-size: 0.95rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    margin-bottom: 1rem; /* Consistent bottom margin */
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+/* === MAIN CONTENT LAYOUT === */
+main {
+    display: block; /* Changed from flex, ensure this works for your layout */
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-left: 180px; /* Match sidebar width */
+    padding: 6rem 2rem 2rem;
+    z-index: 2; /* Keep above sidebar background if needed, though maybe not necessary */
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    text-align: left;
+    width: calc(100% - 180px); /* Match sidebar width */
+    transition: background-color var(--transition-speed), color var(--transition-speed), margin-left var(--transition-speed), width var(--transition-speed);
+}
+
+/* Basic section styling - can be overridden in components */
+.section {
+    position: relative;
+    padding-top: 1rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* === THEME TOGGLE SHARED STYLES === */
+.theme-toggle { /* Use class selector for shared button styles */
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hover-color);
+    color: var(--text-color);
+    padding: 0;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    /* Positioning is handled in component styles */
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Icon visibility based on theme */
+[data-theme="light"] .theme-toggle .dark-icon { display: none; }
+[data-theme="dark"]  .theme-toggle .light-icon { display: none; }
+[data-theme="light"] .theme-toggle .light-icon { display: inline; } /* Explicitly show */
+[data-theme="dark"]  .theme-toggle .dark-icon { display: inline; } /* Explicitly show */
+
+
+/* === RESPONSIVE GLOBAL ADJUSTMENTS === */
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 4rem; /* Adjust padding when sidebar moves to bottom */
+        padding-bottom: 6rem; /* Add padding for bottom sidebar */
+    }
+}
+
+/* === UTILITIES === */
+.no-transition, .no-transition * {
+    transition: none !important;
+}

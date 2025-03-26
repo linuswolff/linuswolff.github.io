@@ -1,0 +1,66 @@
+---
+// src/pages/projects.astro
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pageTitle = 'projects - Linus Wolff';
+const pageDescription = 'Explore my portfolio of projects and personal works';
+---
+<MainLayout title={pageTitle} activePage="projects" description={pageDescription}>
+    <section id="projects" class="section">
+        <div class="section-header">
+            <h1>Projects</h1>
+        </div>
+         {/* ADD YOUR ACTUAL PROJECTS! */}
+        <div class="project-grid">
+            <div class="project-card">
+                <h2>Project 1</h2>
+                <p>A brief description of your first project goes here.</p>
+            </div>
+            <div class="project-card">
+                <h2>Project 2</h2>
+                <p>A brief description of your second project goes here.</p>
+            </div>
+            <div class="project-card">
+                <h2>Project 3</h2>
+                <p>A brief description of your third project goes here.</p>
+            </div>
+            {/* Add more project cards */}
+        </div>
+    </section>
+
+    {/* === PAGE-SPECIFIC STYLES === */}
+    <style>
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly smaller min */
+            gap: 1.5rem; /* Adjust gap */
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed),
+                        transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+         /* Style heading specifically within project card */
+        .project-card h2 {
+            margin-bottom: 0.5rem; /* Adjust spacing below title */
+            font-size: 1.3rem; /* Adjust size if needed */
+        }
+
+         .project-card p {
+             font-size: 0.9rem; /* Slightly smaller text in cards */
+             line-height: 1.4;
+             margin-bottom: 0; /* Remove default bottom margin for last element */
+        }
+    </style>
+</MainLayout>

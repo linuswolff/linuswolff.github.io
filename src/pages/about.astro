@@ -1,0 +1,17 @@
+---
+// src/pages/about.astro
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pageTitle = 'About Me - Linus Wolff';
+const pageDescription = 'Learn more about Linus Wolff, blabliblub.';
+---
+<MainLayout title={pageTitle} activePage="about" description={pageDescription}>
+    <section id="about" class="section"> {/* No need for 'active' class here really */}
+        <div class="section-header">
+            <h1>About Me</h1>
+        </div>
+        {/* ADD YOUR ACTUAL CONTENT! */}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        {/* Add more content as needed */}
+    </section>
+</MainLayout>

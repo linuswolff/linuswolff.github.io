@@ -1,0 +1,136 @@
+---
+// src/components/Sidebar.astro
+interface Props {
+    activePage: 'about' | 'projects' | 'cv';
+}
+const { activePage } = Astro.props;
+---
+<div class="sidebar">
+    <a href="/" class="sidebar-name-link"> {/* Link to home page */}
+        <p class="sidebar-name">linus<br>wolff</p>
+    </a>
+    {/* Use class:list for conditional classes */}
+    <a href="/about" class:list={["sidebar-link", { active: activePage === 'about' }]}>about</a>
+    <a href="/projects" class:list={["sidebar-link", { active: activePage === 'projects' }]}>projects</a>
+    <a href="/cv" class:list={["sidebar-link", { active: activePage === 'cv' }]}>cv</a>
+    <button id="sidebar-theme-toggle" class="theme-toggle sidebar-theme-toggle">
+        <span class="light-icon">☀</span>
+        <span class="dark-icon">☽</span>
+    </button>
+</div>
+
+{/* === COMPONENT STYLES === */}
+<style>
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 180px;
+        height: 100vh;
+        background-color: var(--box-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 4rem;
+        border-right: 1px solid var(--border-color);
+        z-index: 10; /* Ensure sidebar itself is above landing background */
+        transition: background-color var(--transition-speed), border-color var(--transition-speed),
+                    width var(--transition-speed), transform var(--transition-speed); /* Added transitions */
+    }
+
+    .sidebar-name-link {
+        text-decoration: none;
+        color: var(--text-color);
+        display: block;
+        /* Resetting potential overrides from global 'a' or '.sidebar-link' */
+        background-color: transparent !important; /* Keep if necessary, try removing first */
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin-bottom: 0 !important; /* Reset margin */
+        width: auto !important; /* Allow natural width */
+    }
+    .sidebar-name-link:hover {
+         background-color: transparent !important; /* Ensure no hover background */
+    }
+
+    .sidebar-name {
+        font-style: normal;
+        font-size: 1.3rem;
+        color: var(--text-color);
+        margin-bottom: 2.5rem; /* Spacing below name */
+        text-align: center;
+        font-family: 'Tourney', cursive;
+        letter-spacing: 2px;
+        text-transform: lowercase;
+        transition: color var(--transition-speed);
+        padding: 0 1rem; /* Add some horizontal padding */
+    }
+
+    .sidebar-link { /* Specific styling for nav links in sidebar */
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        width: 120px;
+        text-align: center;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 400;
+        transition: background-color var(--transition-speed), color var(--transition-speed);
+        display: block; /* Ensure width applies */
+    }
+
+    .sidebar-link:hover {
+        background-color: var(--hover-color);
+    }
+
+    .sidebar-link.active { /* Style for the active link */
+        font-weight: bold;
+        background-color: var(--hover-color);
+    }
+
+    /* Specific positioning for sidebar theme toggle */
+    #sidebar-theme-toggle {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+         /* Base styles (.theme-toggle) are global */
+    }
+
+
+    /* Responsive adjustments for Sidebar */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            height: auto; /* Auto height for bottom bar */
+            flex-direction: row; /* Horizontal layout */
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5rem 1rem; /* Adjust padding */
+            position: fixed; /* Keep fixed */
+            bottom: 0; /* Stick to bottom */
+            top: auto; /* Unset top */
+            left: 0; /* Ensure full width */
+            border-right: none; /* Remove side border */
+            border-top: 1px solid var(--border-color); /* Add top border */
+            z-index: 100; /* Ensure it's above content */
+        }
+
+        .sidebar-name-link {
+            display: none; /* Hide name on small screens */
+        }
+
+         .sidebar-link {
+             margin-bottom: 0; /* Remove bottom margin */
+             width: auto; /* Allow natural width */
+             padding: 0.5rem; /* Adjust padding */
+        }
+
+        #sidebar-theme-toggle {
+            position: static; /* Remove absolute positioning */
+            transform: none; /* Reset transform */
+        }
+    }
+</style>

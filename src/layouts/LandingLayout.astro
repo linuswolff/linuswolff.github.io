@@ -1,0 +1,211 @@
+---
+// src/layouts/LandingLayout.astro
+import Head from '../components/Head.astro';
+
+interface Props {
+    title: string;
+    description?: string;
+}
+const { title, description } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <Head title={title} description={description} /> {/* Include the Head component */}
+</head>
+<body>
+    <div class="landing">
+        <div class="content-box">
+            <!-- Page-specific content goes here -->
+            <slot />
+
+            {/* Theme toggle moved inside the slot's parent to match original structure */}
+            <button id="theme-toggle" class="theme-toggle">
+                <span class="light-icon">☀</span>
+                <span class="dark-icon">☽</span>
+            </button>
+        </div>
+    </div>
+    {/* Script to attach theme toggle listeners */}
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) themeToggle.addEventListener('click', window.toggleTheme);
+    </script>
+
+    {/* === LANDING LAYOUT STYLES === */}
+    <style>
+        /* Style the .landing container (part of this layout) */
+        .landing {
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-image: url('/image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: var(--image-filter);
+            overflow: hidden;
+            transition: filter var(--transition-speed);
+        }
+
+        /* Style the .content-box (part of this layout) */
+        .content-box {
+            background-color: var(--box-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 300px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative; /* ESSENTIAL for absolute children */
+            text-align: center;
+            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        /* Style H1 inside .content-box (slotted, but direct H1 usually okay) */
+        :global(.content-box > h1) {
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Tourney', cursive;
+            letter-spacing: 1px;
+            text-transform: lowercase;
+            color: var(--text-color);
+            transition: color var(--transition-speed);
+        }
+
+        /* === Navigation Styling === */
+        /* Apply flex layout GLOBALLY to the nav slotted *inside* .content-box */
+        /* This targets the <nav> element coming from index.astro */
+            :global(.content-box nav) {
+            display: flex;
+            flex-direction: column; /* Stack links vertically */
+            gap: 0.3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Style the .page_links GLOBALLY within that nav */
+            :global(.content-box nav .page_links) {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 400;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            /* Default background is transparent */
+        }
+        /* Optional fixed widths applied globally within context */
+            :global(.content-box nav .page_links[href="/about"]) { width: 120px; }
+            :global(.content-box nav .page_links[href="/projects"]) { width: 140px; }
+            :global(.content-box nav .page_links[href="/cv"]) { width: 100px; }
+
+            :global(.content-box nav .page_links:hover) {
+            background-color: var(--hover-color); /* Background on hover */
+        }
+
+        /* === Theme Toggle Specific Positioning === */
+        /* This ID is unique to this layout */
+        #theme-toggle {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            /* Base style from .theme-toggle in global CSS */
+        }
+
+        /* === Social Buttons Styling === */
+            /* Position the container GLOBALLY within .content-box */
+            :global(.content-box .social-buttons) {
+            position: absolute; /* Position relative to .content-box */
+            left: 1rem;
+            bottom: 1rem;
+            display: flex;
+            flex-direction: row;
+            gap: 0rem;
+            padding: 0rem;
+            background-color: var(--hover-color); /* Pill background */
+            border-radius: 20px; /* Pill shape */
+            transition: background-color var(--transition-speed);
+        }
+
+        /* Style buttons GLOBALLY within the container */
+            :global(.content-box .social-buttons .social-button) {
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--hover-color); /* Matches container */
+            color: var(--text-color);
+            padding: 0;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+            :global(.content-box .social-buttons .social-button:hover) {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        [data-theme="dark"] :global(.content-box .social-buttons .social-button:hover) {
+                background-color: rgba(255, 255, 255, 0.3);
+        }
+
+            :global(.content-box .social-buttons .social-button svg) {
+            width: 1.1rem;
+            height: 1.1rem;
+            fill: currentColor;
+            display: block;
+        }
+        /* Style link inside button globally */
+            :global(.content-box .social-buttons .social-button .button-link) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                color: inherit;
+                text-decoration: none;
+            }
+
+        /* === Responsive Adjustments === */
+        /* These target the layout's own elements or globally modified elements */
+        @media (max-width: 768px) {
+            .content-box {
+                max-width: 85%;
+            }
+        }
+        /* Apply mobile positioning globally */
+            @media (max-width: 480px) {
+                #theme-toggle { /* Layout's own element */
+                    position: static;
+                    margin-top: 1rem;
+                }
+                :global(.content-box .social-buttons) {
+                    position: static;
+                    margin-top: 1rem;
+                    justify-content: center;
+                    background-color: transparent;
+                    gap: 0.5rem;
+                }
+                :global(.content-box .social-buttons .social-button) {
+                    background-color: var(--hover-color);
+                }
+                /* Adjust link styles if needed */
+                :global(.content-box nav .page_links) {
+                    font-size: 1rem;
+                    padding: 0.4rem 0.8rem;
+                }
+        }
+    </style>
+</body>
+</html>
