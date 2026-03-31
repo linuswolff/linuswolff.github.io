@@ -1,0 +1,9 @@
+name = "inf-wiki-vsend"
+main = "src/index.ts"
+compatibility_date = "2024-11-12"
+compatibility_flags = ["nodejs_compat"]
+
+# Set your GitHub Pages origin here, or via wrangler secret
+# wrangler secret put DEEPSEEK_API_KEY
+[vars]
+ALLOWED_ORIGIN = "https://linuswolff.github.io"
