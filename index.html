@@ -4,201 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lw</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'JetBrains Mono', monospace;
-            -webkit-font-smoothing: antialiased;
-        }
-        .text-muted { color: #888888; }
-        .border-subtle { border-color: #222222; }
-        .hover-link {
-            text-decoration: underline;
-        }
-        .hover-link:hover {
-            text-decoration: none;
-        }
-        .section-end-line {
-            width: 60px;
-            height: 1px;
-            background-color: #222222;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="px-6 py-12 md:px-24 lg:px-48">
-
-    <nav class="flex justify-between items-start mb-24">
-        <div class="text-2xl font-bold tracking-tighter">lw</div>
-        <div class="flex flex-col text-right space-y-1 text-sm">
-            <a href="#" class="hover-link">X</a>
-            <a href="#" class="hover-link">github</a>
-            <a href="#" class="hover-link">linkedin</a>
+<body>
+    <nav class="site-nav">
+        <div class="brand">lw</div>
+        <div class="nav-links">
+            <a href="#">X</a>
+            <a href="#">github</a>
+            <a href="#">linkedin</a>
         </div>
-        <div class="hidden md:block">
-            <a href="#" class="text-sm hover-link">Projects</a>
+        <div class="nav-projects">
+            <a href="#projects">Projects</a>
         </div>
     </nav>
 
-    <main class="max-w-4xl">
-        <h1 class="text-2xl md:text-3xl font-light leading-tight mb-8">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit.
-        </h1>
-        <div class="mt-15 grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="aspect-[3/4] overflow-hidden border border-subtle">
-                <img src="https://picsum.photos/seed/lw-portrait/400/533" alt="" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            </div>
-            <div class="md:col-span-2 text-muted leading-relaxed space-y-6">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.
-                </p>
-                <p>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.
-                </p>
-                <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+    <main class="intro">
+        <h1>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h1>
+        <div class="intro-grid">
+            <figure class="portrait">
+                <img src="https://picsum.photos/seed/lw-portrait/400/533" alt="">
+            </figure>
+            <div class="intro-copy muted">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</p>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
     </main>
 
-    <!-- 1. CV -->
-    <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-24">
-        <div class="col-span-full">
-            <hr class="border-subtle mb-6">
-        </div>
-        <div class="text-base text-muted">CV</div>
-        <div class="md:col-span-3 space-y-4">
-            <div class="border-b border-subtle pb-6">
-                <div class="flex justify-between items-end mb-3">
+    <section class="section">
+        <hr>
+        <div class="section-label muted">CV</div>
+        <div class="section-content cv-list">
+            <article class="cv-item">
+                <div class="cv-heading">
                     <div>
-                        <div class="text-lg">Lorem Ipsum Role</div>
-                        <div class="text-sm text-muted">Company One</div>
+                        <h2>Lorem Ipsum Role</h2>
+                        <p class="muted">Company One</p>
                     </div>
-                    <div class="text-sm text-muted italic">2022 — Present</div>
+                    <time class="muted">2022 - Present</time>
                 </div>
-                <ul class="text-sm text-muted space-y-1 list-none">
-                    <li>· Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-                    <li>· Sed do eiusmod tempor incididunt ut labore et dolore magna</li>
-                    <li>· Ut enim ad minim veniam, quis nostrud exercitation ullamco</li>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+                    <li>Sed do eiusmod tempor incididunt ut labore et dolore magna</li>
+                    <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco</li>
                 </ul>
-            </div>
-            <div class="border-b border-subtle pb-6">
-                <div class="flex justify-between items-end mb-3">
+            </article>
+
+            <article class="cv-item">
+                <div class="cv-heading">
                     <div>
-                        <div class="text-lg">Dolor Sit Amet</div>
-                        <div class="text-sm text-muted">Company Two</div>
+                        <h2>Dolor Sit Amet</h2>
+                        <p class="muted">Company Two</p>
                     </div>
-                    <div class="text-sm text-muted italic">2020 — 2022</div>
+                    <time class="muted">2020 - 2022</time>
                 </div>
-                <ul class="text-sm text-muted space-y-1 list-none">
-                    <li>· Duis aute irure dolor in reprehenderit in voluptate velit</li>
-                    <li>· Excepteur sint occaecat cupidatat non proident deserunt</li>
-                    <li>· Nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
+                <ul>
+                    <li>Duis aute irure dolor in reprehenderit in voluptate velit</li>
+                    <li>Excepteur sint occaecat cupidatat non proident deserunt</li>
+                    <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
                 </ul>
-            </div>
-            <div class="border-b border-subtle pb-6">
-                <div class="flex justify-between items-end mb-3">
+            </article>
+
+            <article class="cv-item">
+                <div class="cv-heading">
                     <div>
-                        <div class="text-lg">Consectetur Adipiscing</div>
-                        <div class="text-sm text-muted">Company Three</div>
+                        <h2>Consectetur Adipiscing</h2>
+                        <p class="muted">Company Three</p>
                     </div>
-                    <div class="text-sm text-muted italic">2019 — 2020</div>
+                    <time class="muted">2019 - 2020</time>
                 </div>
-                <ul class="text-sm text-muted space-y-1 list-none">
-                    <li>· Neque porro quisquam est qui dolorem ipsum quia dolor</li>
-                    <li>· Ut labore et dolore magnam aliquam quaerat voluptatem</li>
-                    <li>· Quis autem vel eum iure reprehenderit qui in ea voluptate</li>
+                <ul>
+                    <li>Neque porro quisquam est qui dolorem ipsum quia dolor</li>
+                    <li>Ut labore et dolore magnam aliquam quaerat voluptatem</li>
+                    <li>Quis autem vel eum iure reprehenderit qui in ea voluptate</li>
                 </ul>
-            </div>
+            </article>
         </div>
-        <div class="md:col-start-2 md:col-span-3 mt-8">
-            <div class="section-end-line"></div>
-        </div>
+        <div class="section-end"></div>
     </section>
 
-    <!-- 2. Things I've worked on -->
-    <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-24">
-        <div class="col-span-full">
-            <hr class="border-subtle mb-6">
+    <section class="section" id="projects">
+        <hr>
+        <div class="section-label">
+            <div class="muted">Things I've worked on</div>
+            <p class="note muted">outside of work.</p>
         </div>
-        <div>    
-            <div class="text-base text-muted">Things I've worked on</div>
-            <div class="text-xs text-muted opacity-75 italic mt-1">outside of work.</div>
-        </div>
-        <div class="md:col-span-3 space-y-8">
-            <a href="/projects/read-for-speed/" class="group block border-b border-subtle pb-4 no-underline">
-                <div class="flex justify-between items-center text-lg">
+        <div class="section-content project-list">
+            <a href="projects/read-for-speed/" class="project-link">
+                <span class="project-title">
                     <span>Read for Speed</span>
-                    <span class="text-muted transition-transform group-hover:translate-x-1">→</span>
-                </div>
-                <p class="mt-2 text-muted text-sm leading-relaxed">A minimal RSVP speed reader. Paste any text and read it word by word at your chosen pace — no clutter, just focus.</p>
+                    <span class="arrow">-&gt;</span>
+                </span>
+                <span class="project-description muted">A minimal RSVP speed reader. Paste any text and read it word by word at your chosen pace - no clutter, just focus.</span>
             </a>
-            <a href="/projects/infinite-wiki/" class="group block border-b border-subtle pb-4 no-underline">
-                <div class="flex justify-between items-center text-lg">
+            <a href="projects/infinite-wiki/" class="project-link">
+                <span class="project-title">
                     <span>Infinite Wiki</span>
-                    <span class="text-muted transition-transform group-hover:translate-x-1">→</span>
-                </div>
-                <p class="mt-2 text-muted text-sm leading-relaxed">An infinitely deep encyclopedia. Every article links to more articles, all generated on the fly by an LLM — fall down the rabbit hole.</p>
+                    <span class="arrow">-&gt;</span>
+                </span>
+                <span class="project-description muted">An infinitely deep encyclopedia. Every article links to more articles, all generated on the fly by an LLM - fall down the rabbit hole.</span>
             </a>
         </div>
-        <div class="md:col-start-2 md:col-span-3 mt-8">
-            <div class="section-end-line"></div>
-        </div>
+        <div class="section-end"></div>
     </section>
 
-    <!-- 3. About me -->
-    <section class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-24">
-        <div class="col-span-full">
-            <hr class="border-subtle mb-6">
+    <section class="section">
+        <hr>
+        <div class="section-label">
+            <div class="muted">About me</div>
+            <p class="note muted">Ein Bild sagt mehr als 1000 Worte.</p>
         </div>
-        <div>
-            <div class="text-base text-muted">About me</div>
-            <div class="text-xs text-muted opacity-75 italic mt-1">Ein Bild sagt mehr als 1000 Worte.</div>
+        <div class="section-content photo-grid">
+            <figure><img src="https://picsum.photos/seed/lw1/600/450" alt=""></figure>
+            <figure><img src="https://picsum.photos/seed/lw2/600/450" alt=""></figure>
+            <figure><img src="https://picsum.photos/seed/lw3/600/450" alt=""></figure>
+            <figure><img src="https://picsum.photos/seed/lw4/600/450" alt=""></figure>
+            <figure><img src="https://picsum.photos/seed/lw5/600/450" alt=""></figure>
+            <figure><img src="https://picsum.photos/seed/lw6/600/450" alt=""></figure>
         </div>
-        <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div class="aspect-[4/3] overflow-hidden border border-subtle">
-                <img src="https://picsum.photos/seed/lw1/600/450" alt="" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            </div>
-            <div class="aspect-[4/3] overflow-hidden border border-subtle">
-                <img src="https://picsum.photos/seed/lw2/600/450" alt="" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            </div>
-            <div class="aspect-[4/3] overflow-hidden border border-subtle">
-                <img src="https://picsum.photos/seed/lw3/600/450" alt="" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            </div>
-            <div class="aspect-[4/3] overflow-hidden border border-subtle">
-                <img src="https://picsum.photos/seed/lw4/600/450" alt="" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            </div>
-            <div class="aspect-[4/3] overflow-hidden border border-subtle">
-                <img src="https://picsum.photos/seed/lw5/600/450" alt="" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            </div>
-            <div class="aspect-[4/3] overflow-hidden border border-subtle">
-                <img src="https://picsum.photos/seed/lw6/600/450" alt="" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            </div>
-        </div>
-        <div class="md:col-start-2 md:col-span-3 mt-8">
-            <div class="section-end-line"></div>
-        </div>
+        <div class="section-end"></div>
     </section>
 
-    <footer class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-24 pb-12">
-        <div class="col-span-full">
-            <hr class="border-subtle mb-6">
-        </div>
-        <div class="text-base text-muted">Linus Wolff</div>
-        <div class="md:col-span-3 space-y-4">
-            <p class="text-muted leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <div class="flex flex-col space-y-2 text-sm">
-                <a href="#" class="hover-link">email</a>
-                <a href="#" class="hover-link">github</a>
-                <a href="#" class="hover-link">linkedin</a>
+    <footer class="section site-footer">
+        <hr>
+        <div class="section-label muted">Linus Wolff</div>
+        <div class="section-content">
+            <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="footer-links">
+                <a href="#">email</a>
+                <a href="#">github</a>
+                <a href="#">linkedin</a>
             </div>
         </div>
     </footer>
-
 </body>
 </html>
